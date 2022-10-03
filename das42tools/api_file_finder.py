@@ -18,7 +18,7 @@ def list_files_in_project(lookml_project):
 
     views = list(filter(lambda x: x['type'] == 'view', sdk.all_project_files(project_id = lookml_project)))
     view_names = list(view['id'].split('.view.lkml')[0] for view in views)
-    view_names = list(map(lambda x: x.lower(), view_names))
+    view_names = list(map(lambda x: x.lower().split('/')[-1], view_names))
     models = filter(lambda x: x['type'] == 'model', sdk.all_project_files(project_id = lookml_project))
     model_names = (model['id'].split('.model.lkml')[0] for model in models)
     
